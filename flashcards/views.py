@@ -5,13 +5,16 @@ from .forms import CardForm
 def post(request):
     if request.method == 'POST':
         form =CardForm(request.POST,request.FILES)
-        print(form.errors)
+
         if form.is_valid():
-            submit = form.save(commit=False)
-            submit.user = request.user.profile
-            submit.save()
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.save()
         return redirect('/')
     else:
         form =CardForm()
 
     return render(request,'post.html',{'form':form})
+
+def mycards(request):
+    return render(request, 'cards.html')
