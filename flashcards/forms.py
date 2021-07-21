@@ -1,7 +1,7 @@
 from django import forms
-from .models import Profile,Project,Rating,Comment
+from .models import Card, Profile
 
-class ProjectForm(forms.ModelForm):  
+class CardForm(forms.ModelForm):  
     class Meta:
-        model = Project
+        model = Card
         fields = ('title','content','category')
