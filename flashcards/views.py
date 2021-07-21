@@ -10,7 +10,7 @@ def post(request):
             post = form.save(commit=False)
             post.user = request.user.profile
             post.save()
-        return redirect('/')
+        return redirect('mycards')
     else:
         form =CardForm()
 

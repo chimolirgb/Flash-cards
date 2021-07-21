@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 urlpatterns=[
     # path('',views.home,name = 'index'),
     path('',views.post,name = 'post'),
+    path('^mycards/$',views.mycards,name = 'cards'),
   
 
 
