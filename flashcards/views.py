@@ -11,6 +11,12 @@ from rest_framework.views import APIView
 from .serializer import ProfileSerializer
 
 # Create your views here.
+
+def welcome(request):
+    return render(request, 'home.html')
+
+
+
 @login_required(login_url='/accounts/login/')
 def create_profile(request):
     current_user = request.user
@@ -35,6 +41,14 @@ def user_profile(request,username):
 
     return render(request,'user-profile.html',{"profile":profile})
 
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    current_user = request.user
+    profile =Profile.objects.get(username=current_user)
+    
+    return render(request,'profile.html',{"profile":profile})
+
+
 
 class ProfileList(APIView):
     def get(self, request, format=None):
@@ -42,12 +56,6 @@ class ProfileList(APIView):
         serializers = ProfileSerializer(all_profiles, many=True)
         return Response(serializers.data)
 
-@login_required(login_url='/accounts/login/')
-def profile(request):
-    current_user = request.user
-    profile =Profile.objects.get(username=current_user)
-    
-    return render(request,'profile.html',{"profile":profile})
 
 def logout(request):
     logout(request)
