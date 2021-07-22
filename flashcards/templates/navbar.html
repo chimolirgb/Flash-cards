@@ -11,26 +11,25 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'post' %}">Post</a>
+        <a class="nav-link" href="#"></a>
       </li>
       <div class="col-sm-6 col-md-6" style="display: inline-flex; margin-right: 50px;">
         {% if user.is_authenticated %}
-        <a href="{%url 'post'%}"> submit</a>  
-      
-      
-       
-
+    
         <div class="instaicon like" style="display: inline;" class="dropdown">
+          
             <a href="{% url 'profile' user.username %}" class="dropdown-toggle btn btn-default"
-                data-toggle="dropdown" role="button" aria-expanded="false"></a>
+                data-toggle="dropdown" role="button" aria-expanded="false">Profile</a>
             <ul class="dropdown-menu" role="menu">
                 <li>
-                    <a href="{% url 'profile' user.username %}" style="color: inherit;">
-                        </span>Profile</a>
+                  <a href="{% url 'profile' user.username %}" class="dropdown-toggle btn btn-default">Profile</a>
                 </li>
                 <li>
-                    <a href="{%url 'index'%}" style="color: inherit;">Home</a>
+                    <a href="{%url 'welcome' %}" style="color: inherit;">Home</a>
                 </li>
+                <li>
+                  <a href="{%url 'post'%}" style="color: inherit;">Create New card</a> 
+              </li>
                 <li>
                     <a href="/accounts/password_change" style="color: inherit;">Change Password</a>
                 </li>
