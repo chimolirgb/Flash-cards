@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Project Award</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </li>
+      <div class="col-sm-6 col-md-6" style="display: inline-flex; margin-right: 50px;">
+        {% if user.is_authenticated %}
+    
+        <div class="instaicon like" style="display: inline;" class="dropdown">
+          
+            <a href="{% url 'profile' user.username %}" class="dropdown-toggle btn btn-default"
+                data-toggle="dropdown" role="button" aria-expanded="false">Profile</a>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="{% url 'profile' user.username %}" class="dropdown-toggle btn btn-default">Profile</a>
+                </li>
+                <li>
+                    <a href="{%url 'welcome' %}" style="color: inherit;">Home</a>
+                </li>
+                <li>
+                  <a href="{%url 'post'%}" style="color: inherit;">Create New card</a> 
+              </li>
+                <li>
+                    <a href="/accounts/password_change" style="color: inherit;">Change Password</a>
+                </li>
+                
+                <li>
+                    <a href="/accounts/logout" style="color: inherit;">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        {% else %}
+        <a class='btn btn-default' href="/accounts/login">
+            <p>Login</p>
+        </a>
+        {% endif %}
+    </div>
+    
+
+  </div>
+  </ul>
+  <form class="form-inline my-2 my-lg-0" action="" >
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+  </div>
+</nav>
