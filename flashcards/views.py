@@ -13,7 +13,7 @@ from .serializer import ProfileSerializer
 # Create your views here.
 
 def welcome(request):
-    return render(request, 'home.html')
+    return render(request, 'index.html')
 
 
 
@@ -34,19 +34,11 @@ def create_profile(request):
     return render(request,'create_profile.html',{"form":form})
 
 @login_required(login_url='/accounts/login/')
-def user_profile(request,username):
-    user = User.objects.get(username=username)
-    profile =Profile.objects.get(username=user)
-    
-
-    return render(request,'user-profile.html',{"profile":profile})
-
-@login_required(login_url='/accounts/login/')
 def profile(request):
-    current_user = request.user
-    profile =Profile.objects.get(username=current_user)
+    # current_user = request.user
+    # profile =Profile.objects.get(username=current_user)
     
-    return render(request,'profile.html',{"profile":profile})
+    return render(request,'profile.html')
 
 
 

@@ -1,0 +1,27 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="us">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    {% block styles %}
+    {% bootstrap_css %}
+
+    {% endblock %}
+</head>
+
+<body>
+    
+    {% block content %}
+    {%endblock%}
+
+    {% block scripts %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
+</body>
+
+</html>

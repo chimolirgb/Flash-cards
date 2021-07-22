@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
      'rest_framework',
      'tinymce',
-    'bootstrap3',
+    'bootstrap4',
     'flashcards.apps.FlashcardsConfig',
     'rest_framework.authtoken',
 ]
@@ -156,3 +156,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 django_heroku.settings(locals())
+
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
