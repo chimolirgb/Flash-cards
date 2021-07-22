@@ -6,9 +6,19 @@
 {%block content%}
 
 <div class="container">
-    <div class="row" style="height: 30vh">
+ 
         <h1> Welcome to the Flash-Cards Application</h1>
 
+        <div class="row">
+            {%for card in cards%}
+
+            <ul>
+                <li><a href="#">{{card.category}}</a> </li>
+            </ul>
+            {%endfor%}
+
+
+        </div>
         
 
         

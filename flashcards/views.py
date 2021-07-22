@@ -2,10 +2,9 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Profile
+from .models import Profile,Card
 from .forms import ProfileForm,CardForm,UpdateUserProfileForm,UpdateUserForm
-from decouple import config,Csv
-from django.db.models import Q
+
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -30,6 +29,12 @@ def post(request):
         form =CardForm()
 
     return render(request,'post.html',{'form':form})
+
+# def category(request,category):
+#     current_category = Card.objects.get(id=category)
+#     cards = Card.objects.get(category=current_category)
+
+#     return render(request,'categories.html', {'cards':cards})
 
 
 @login_required(login_url='/accounts/login/')

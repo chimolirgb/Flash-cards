@@ -1,0 +1,20 @@
+{% extends  'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+
+    <h2>Category</h2>
+    <hr>
+    {%for card in cards%}
+
+    <ul>
+        <li><a href="#">{{card.category}}</a> </li>
+    </ul>
+    {%endfor%}
+
+
+</div>
+
+{%endblock %}

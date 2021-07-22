@@ -9,8 +9,7 @@ urlpatterns=[
     path(r'^create/profile/$',views.create_profile, name='create-profile'),
     path('profile/<str:username>/',views.profile,name='profile'),
     path(r'^api/profiles/$', views.ProfileList.as_view()),
-  
-
+    # path('categories/<str:category>/',views.category,name='categories')
 
 ]
 if settings.DEBUG:
