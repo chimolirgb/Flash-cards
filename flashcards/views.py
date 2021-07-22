@@ -105,7 +105,7 @@ def add_card(request, category):
         if form.is_valid():
             card = Card(title=form.cleaned_data.get('title'),
                         content=form.cleaned_data.get('content'),
-                        category=category.objects.get(id=category))
+                        category=Category.objects.get(id=category))
             card.save()
             return redirect('category', category=int(category))
         else:
