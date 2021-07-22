@@ -40,14 +40,21 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
+class Category(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    category_name = models.CharField(max_length=50)
+
+    def save_category(self):
+        self.save()
 
 
 class Card(models.Model):
-    user = models.ForeignKey('Profile', on_delete=models.CASCADE,related_name='cards')
+    category= models.ForeignKey(Category,on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     content = models.TextField(max_length=200)
     posted = models.DateTimeField(auto_now_add=True)
-    category=models.CharField(max_length=50)
+    
+    
 
     class Meta:
         ordering = ["-pk"]

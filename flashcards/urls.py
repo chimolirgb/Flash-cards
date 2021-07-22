@@ -5,11 +5,12 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     path('',views.welcome,name = 'welcome'),
-    path('^/cards/$',views.post,name = 'post'),
-    path(r'^create/profile/$',views.create_profile, name='create-profile'),
+    path('^/cards/<category>',views.add_card,name = 'post'),
+    # path(r'^create/profile/$',views.create_profile, name='create-profile'),
     path('profile/<str:username>/',views.profile,name='profile'),
-    path(r'^api/profiles/$', views.ProfileList.as_view()),
-    # path('categories/<str:category>/',views.category,name='categories')
+    # path(r'^api/profiles/$', views.ProfileList.as_view()),
+    path('category/<category>',views.category,name='category'),
+    path('addcategory', views.add_category, name='newcategory'),
 
 ]
 if settings.DEBUG:

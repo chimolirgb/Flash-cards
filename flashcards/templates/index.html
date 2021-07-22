@@ -10,10 +10,10 @@
         <h1> Welcome to the Flash-Cards Application</h1>
 
         <div class="row">
-            {%for card in cards%}
+            {%for category in categories%}
 
             <ul>
-                <li><a href="#">{{card.category}}</a> </li>
+                <li><a href="{% url 'category' category=category.id%}">{{category.category_name}}</a> </li>
             </ul>
             {%endfor%}
 

@@ -10,11 +10,12 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
+      {% if user.is_authenticated %}
       <li class="nav-item">
-        <a class="nav-link" href="#"></a>
+        <a class="nav-link" href="{% url 'newcategory'%}">New Set</a>
       </li>
       <div class="col-sm-6 col-md-6" style="display: inline-flex; margin-right: 50px;">
-        {% if user.is_authenticated %}
+       
     
         <div class="instaicon like" style="display: inline;" class="dropdown">
           
@@ -28,7 +29,7 @@
                     <a href="{%url 'welcome' %}" style="color: inherit;">Home</a>
                 </li>
                 <li>
-                  <a href="{%url 'post'%}" style="color: inherit;">Create New card</a> 
+                  <a href="{%url 'newcategory'%}" style="color: inherit;">Create New card</a> 
               </li>
                 <li>
                     <a href="/accounts/password_change" style="color: inherit;">Change Password</a>
