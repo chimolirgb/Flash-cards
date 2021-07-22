@@ -16,5 +16,5 @@ def post(request):
 
     return render(request,'post.html',{'form':form})
 
-def mycards(request):
-    return render(request, 'cards.html')
+def index(request):
+    return render(request, 'index.html')

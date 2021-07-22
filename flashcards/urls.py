@@ -5,9 +5,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns=[
-    # path('',views.home,name = 'index'),
-    path('',views.post,name = 'post'),
-    path('^mycards/$',views.mycards,name = 'cards'),
+    path('',views.index,name = 'index'),
+    path('^cards/',views.post,name = 'post'),
+    # path('^mycards/$',views.my,name = 'cards'),
   
 
 
