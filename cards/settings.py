@@ -14,6 +14,7 @@ import os
 import dj_database_url
 import django_heroku
 from decouple import config,Csv
+import cloudinary
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,12 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'a6kq&2b*^z_=4dez9$2qca9$y&xohll7k)@y19a_u-+yq^4u$2'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 
-#ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -40,11 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     'rest_framework',
-     'tinymce',
+
+    'flashcards',
     'bootstrap4',
-    'flashcards.apps.FlashcardsConfig',
-    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -88,14 +88,15 @@ if config('MODE')=="dev":
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-    DATABASES = {
+ DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cards',
         'USER': 'postgres',
         'PASSWORD':'Access',
         'HOST': config('DB_HOST'),
-        'PORT': '',
+        'PORT': '',  
+
     }
 }
 
@@ -159,3 +160,10 @@ django_heroku.settings(locals())
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
+
+# adding config
+cloudinary.config( 
+  cloud_name = "dpv25n1mx", 
+  api_key = "828966265885485", 
+  api_secret = "-9DtdpiedUWrxsRAaCISKXrmmfE" 
+)

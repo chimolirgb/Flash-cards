@@ -1,5 +1,35 @@
-
-{% load bootstrap4 %}
+{% extends 'base.html' %}
+{%load bootstrap4%}
 {% load static %}
 
-<h1> Welcome to the Flash-Cards Application</h1>
+
+{%block content%}
+
+<div class="container">
+ 
+        <h1> Welcome to the Flash-Cards Application</h1>
+
+        <div class="row">
+            {%for category in categories%}
+
+            <ul>
+                <li><a href="{% url 'category' category=category.id%}">{{category.category_name}}</a> </li>
+            </ul>
+            {%endfor%}
+
+
+        </div>
+        
+
+        
+
+
+    </div>
+
+    
+</div>
+
+{% endblock %}
+
+
+
