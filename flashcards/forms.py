@@ -5,7 +5,13 @@ from .models import Card,Profile,Category
 class CardForm(forms.ModelForm):  
     class Meta:
         model = Card
-        fields = ('title','content')
+        fields = ('title','photo','category','content')
+        
+        
+class CategoryForm(forms.ModelForm):  
+    class Meta:
+        model = Category
+        fields = ('name','description')
 
 
 class ProfileForm(forms.ModelForm):
@@ -30,7 +36,3 @@ class UpdateUserProfileForm(forms.ModelForm):
         model = Profile
         fields = ['name', 'photo', 'bio']
 
-class CategoryForm(forms.ModelForm):
-    class Meta:
-        model = Category
-        fields = ['category_name']

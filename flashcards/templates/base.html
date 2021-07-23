@@ -1,32 +1,31 @@
-{% load bootstrap4 %}
-{% load static%}
-
+{% load bootstrap4 %} {% load static%}
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    {% if title %}
-    <title>{{title}}</title>
-    {% else %}
-    <title>Account</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {% endif %}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    {% block styles %}
-      {% bootstrap_css%}
+    <title>FlashCards</title>
+
+    {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% endblock %}
-    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}">
-    <link rel="stylesheet" href="{% static 'css/base2.css' %}">
-
-    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
   </head>
   <body>
-    {% block content %} {% endblock %}
-
-    {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!-- {% bootstrap_javascript% } -->
-    {% endblock %}
-
+    <div class="container-fluid p-0 m-0">
+      {%include "navbar.html"%} {%block content%} {%endblock content%}
+    </div>
+    {%include "scripts.html"%} {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} {% endblock %}
   </body>
 </html>

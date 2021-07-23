@@ -1,35 +1,54 @@
-{% extends 'base.html' %}
+{%extends 'base.html'%}
+<!-- html -->
+{% block content %}
+
+<!-- Bootstrap -->
 {%load bootstrap4%}
-{% load static %}
-
-
-{%block content%}
+<!-- static -->
+{% load static%}
+<!-- content -->
 
 <div class="container">
- 
-        <h1> Welcome to the Flash-Cards Application</h1>
+  <h1 class="text-center mt-5">Welcome to the Flash-Cards Application</h1>
 
-        <div class="row">
-            {%for category in categories%}
+  {%for category in categories%}
+  <div class="accordion" id="accordionExample">
+    <div class="card mt-3">
+      <div class="card-header d-flex justify-content-between " id="{{category.id}}">
+        <h2 class="mb-0">
+          <button
+            class="btn  btn-outline-dark text-left"
+            type="button"
+            data-toggle="collapse"
+            data-target="#{{category}}"
+            aria-expanded="true"
+            aria-controls="{{category}}"
+          >
+            {{category.name}}
+          </button>
+        </h2>
+        <h2 class="mb-0">
+      <a href="{%url 'cards_list' category.id%}" class="btn btn-outline-success">
+        View
+      </a>
+        </h2>
+      </div>
 
-            <ul>
-                <li><a href="{% url 'category' category=category.id%}">{{category.category_name}}</a> </li>
-            </ul>
-            {%endfor%}
-
-
+      <div
+        id="{{category}}"
+        class="collapse show"
+        aria-labelledby="{{category.id}}"
+        data-parent="#{{category}}"
+      >
+        <div class="card-body">
+    {{category.description}}
         </div>
-        
-
-        
-
-
+      </div>
     </div>
+  </div>
+    {%endfor%}
 
-    
+  </div>
+
+  {% endblock %}
 </div>
-
-{% endblock %}
-
-
-

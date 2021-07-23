@@ -40,24 +40,39 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
-class Category(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    category_name = models.CharField(max_length=50)
 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE)
+    
+    class Meta:
+        ordering = ["-pk"]
+        
     def save_category(self):
         self.save()
 
+    def delete_category(self):
+        self.delete()
+
+    def __str__(self):
+        return self.name
+
 
 class Card(models.Model):
-    category= models.ForeignKey(Category,on_delete=models.CASCADE)
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE,related_name='cards')
     title = models.CharField(max_length=50)
     content = models.TextField(max_length=200)
+    photo = CloudinaryField('image',null="true")
     posted = models.DateTimeField(auto_now_add=True)
-    
-    
+    modified = models.DateTimeField(auto_now=True)
+    category= models.ForeignKey(Category, on_delete=models.CASCADE,null=True)
+  
 
     class Meta:
         ordering = ["-pk"]
+        
     def save_card(self):
         self.save()
 
@@ -66,6 +81,8 @@ class Card(models.Model):
 
     def __str__(self):
         return self.title
+    
+
     
 
 

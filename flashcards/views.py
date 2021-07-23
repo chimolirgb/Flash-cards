@@ -2,9 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Category, Profile,Card
+from .models import Profile,Card,Category
 from .forms import ProfileForm,CardForm,UpdateUserProfileForm,UpdateUserForm,CategoryForm
-from django.utils import timezone
 
 from django.contrib.auth.models import User
 from rest_framework.response import Response
@@ -14,22 +13,79 @@ from .serializer import ProfileSerializer
 # Create your views here.
 
 def welcome(request):
-    categories = Category.objects.filter(user_id=request.user.id)
+    categories = Category.objects.all()
+  
     return render(request, 'index.html', {"categories": categories})
 
-# def post(request):
-#     if request.method == 'POST':
-#         form =CardForm(request.POST,request.FILES)
+def post(request):
+    if request.method == 'POST':
+        form =CardForm(request.POST,request.FILES)
 
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.user = request.user.profile
-#             post.save()
-#         return redirect('/')
-#     else:
-#         form =CardForm()
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.save()
+        return redirect('/')
+    else:
+        form =CardForm()
 
-#     return render(request,'post.html',{'form':form})
+    return render(request,'post.html',{'form':form})
+
+
+def category(request):
+    if request.method == 'POST':
+        form =CategoryForm(request.POST,request.FILES)
+
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.user = request.user.profile
+            category.save()
+        return redirect('/')
+    else:
+        form =CategoryForm()
+
+    return render(request,'categories.html',{'form':form})
+
+
+def cards_list(request,id):
+    category =  Category.objects.get(id=id)
+    cards = Card.objects.filter(category=category)
+ 
+    ctx={
+        "category":category,
+        "cards":cards
+    }
+    return render(request,'category_cards.html',ctx)
+
+def card_update(request,id):
+    card=Card.objects.get(id=id)
+    category = Category.objects.filter(name=card.category)
+    print(card)
+    
+    
+    form = CardForm(instance=card)
+    if request.method == 'POST':
+        form = CardForm(request.POST,request.FILES,instance=card)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+        return redirect('cards_list',id=card.category_id)
+  
+
+    return render(request,'update_card.html',{'form':form})
+    
+def card_delete(request,id):
+    card = Card.objects.get(id=id)
+    category = Category.objects.filter(name=card.category)
+  
+    card.delete()
+    
+    return redirect('cards_list',id=card.category_id)
+  
+   
+  
+    
+    
 
 
 
@@ -56,7 +112,6 @@ def profile(request,username):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
-
         if user_form.is_valid() and prof_form.is_valid():
             user_form.save()
             prof_form.save()
@@ -78,11 +133,6 @@ class ProfileList(APIView):
         all_profiles = Profile.objects.all()
         serializers = ProfileSerializer(all_profiles, many=True)
         return Response(serializers.data)
-
-def category(request, category):
-    current_category = Category.objects.get(id=category)
-    cards = Card.objects.filter(category_id=category)
-    return render(request, 'category.html', {"category": current_category, "cards": cards})
 
 
 def add_category(request):

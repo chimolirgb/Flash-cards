@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile,Category,Card
+from .models import Profile,Card,Category
 
 # Register your models here.
 admin.site.register(Profile)
