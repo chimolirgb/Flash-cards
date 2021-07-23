@@ -1,11 +1,17 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Card,Profile
+from .models import Card,Profile,Category
 
 class CardForm(forms.ModelForm):  
     class Meta:
         model = Card
-        fields = ('title','content','category')
+        fields = ('title','photo','category','content')
+        
+        
+class CategoryForm(forms.ModelForm):  
+    class Meta:
+        model = Category
+        fields = ('name','description')
 
 
 class ProfileForm(forms.ModelForm):

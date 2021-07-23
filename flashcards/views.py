@@ -2,8 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Profile,Card
-from .forms import ProfileForm,CardForm,UpdateUserProfileForm,UpdateUserForm
+from .models import Profile,Card,Category
+from .forms import ProfileForm,CardForm,UpdateUserProfileForm,UpdateUserForm,CategoryForm
 
 from django.contrib.auth.models import User
 from rest_framework.response import Response
@@ -13,8 +13,9 @@ from .serializer import ProfileSerializer
 # Create your views here.
 
 def welcome(request):
-    cards = request.user.profile.cards.all()
-    return render(request, 'index.html', {"cards": cards})
+    categories = Category.objects.all()
+  
+    return render(request, 'index.html', {"categories": categories})
 
 def post(request):
     if request.method == 'POST':
@@ -30,11 +31,37 @@ def post(request):
 
     return render(request,'post.html',{'form':form})
 
-# def category(request,category):
-#     current_category = Card.objects.get(id=category)
-#     cards = Card.objects.get(category=current_category)
 
-#     return render(request,'categories.html', {'cards':cards})
+def category(request):
+    if request.method == 'POST':
+        form =CategoryForm(request.POST,request.FILES)
+
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.user = request.user.profile
+            category.save()
+        return redirect('/')
+    else:
+        form =CategoryForm()
+
+    return render(request,'categories.html',{'form':form})
+
+
+def cards_list(request,id):
+    category =  Category.objects.get(id=id)
+    cards = Card.objects.filter(category=category)
+    
+    
+    for card in cards:
+        print(card.title)
+        
+    ctx={
+        "category":category,
+        "cards":cards
+    }
+    return render(request,'category_cards.html',ctx)
+    
+
 
 
 @login_required(login_url='/accounts/login/')

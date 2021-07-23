@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+<!-- html -->
+{% block content %}
+
+<!-- Bootstrap -->
+{%load bootstrap4%}
+<!-- static -->
+{% load static%}
+<!-- content -->
+
+<div class="container">
+
+    <h2 class="text-center text-success">{{category.name}}</h2>
+    <div class="row">
+        {% for card in cards  %}
+        <ul>
+            <li>
+                {{card}}
+            </li>
+        </ul>
+        {%empty%}
+        <h4 class="text-center">There are no cards in thsi category at the momement</h4>
+     
+        {% endfor %}
+    </div>
+
+ 
+</div>
+
+  {% endblock %}
+</div>

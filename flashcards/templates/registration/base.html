@@ -1,68 +1,20 @@
-{% load bootstrap4 %}
-<<<<<<< HEAD
-{% load static%}
-
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    {% if title %}
-    <title>{{title}}</title>
-    {% else %}
-    <title>Account</title>
-
-    {% endif %}
-
-    {% block styles %}
-      {% bootstrap_css%}
-    {% endblock %}
-    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}">
-    <link rel="stylesheet" href="{% static 'css/base2.css' %}">
-
-    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
-  </head>
-  <body>
-    {% block content %} {% endblock %}
-
-    {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!-- {% bootstrap_javascript% } -->
-    {% endblock %}
-
-  </body>
-=======
-{% load static %}
+{% load bootstrap4 %} {% load static %}
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     {%if title%}
 
     <title>{{title}}</title>
 
-    {%endif%}
+    {%endif%} {% block styles %} {% bootstrap_css %} {% endblock %}
+  </head>
 
-    {% block styles %}
-    {% bootstrap_css %}
-    {% endblock %}
-
-</head>
-
-<body>
-
-    {% block content %} {%endblock%}
-
-
-    {% block scripts %}
+  <body>
+    {% block content %} {%endblock%} {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% bootstrap_javascript %}
-    {% endblock %}
-
-</body>
-
->>>>>>> 78815f8b0a07239b9e40056bd66ff9f67864a873
+    {% bootstrap_javascript %} {% endblock %}
+  </body>
 </html>

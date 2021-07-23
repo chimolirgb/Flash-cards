@@ -1,0 +1,50 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body,
+html {
+  width: 100vw;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.navbar {
+  display: flex;
+  background: rgb(12, 12, 12) !important;
+  color: white;
+  justify-content: space-between;
+  padding: 10px 30px 10px 20px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+.accordion {
+  max-width: 800px;
+}
+
+.accordion .contentBx {
+  position: relative;
+  margin: 10px 20px;
+}
+
+.accordion .contentBx label {
+  position: relative;
+  padding: 10px;
+  background: rgb(61, 61, 211);
+  color: white;
+  cursor: pointer;
+}
+
+.accordion .contentBx label::before {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+}
