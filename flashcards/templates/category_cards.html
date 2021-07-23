@@ -28,6 +28,11 @@
             <span>Add on :{{card.posted.date}}</span>
             <br>
             <span>Last Updated:{{card.modified.date}}</span>
+
+            <div class="mt-5">
+                <a href="{%url 'card_update' card.id%}"  class="btn btn-primary ml-2"> Update</a>
+                <a href="{%url 'card_delete' card.id%}"  class="btn btn-danger"> Delete</a>
+            </div>
         </div>
     </div>
 </div>

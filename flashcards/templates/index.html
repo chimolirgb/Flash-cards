@@ -9,15 +9,15 @@
 <!-- content -->
 
 <div class="container">
-  <h1 class="text-center">Welcome to the Flash-Cards Application</h1>
+  <h1 class="text-center mt-5">Welcome to the Flash-Cards Application</h1>
 
   {%for category in categories%}
   <div class="accordion" id="accordionExample">
-    <div class="card">
-      <div class="card-header d-flex justify-content-between" id="{{category.id}}">
+    <div class="card mt-3">
+      <div class="card-header d-flex justify-content-between " id="{{category.id}}">
         <h2 class="mb-0">
           <button
-            class="btn btn-link btn-block text-left"
+            class="btn  btn-outline-dark text-left"
             type="button"
             data-toggle="collapse"
             data-target="#{{category}}"

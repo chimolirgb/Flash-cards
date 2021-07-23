@@ -15,6 +15,8 @@ urlpatterns=[
     
     path('category/',views.category,name='category'),
     path('cards_list/<int:id>',views.cards_list,name='cards_list'),
+    path('card_delete/<int:id>',views.card_delete,name='card_delete'),
+    path('card_update/<int:id>',views.card_update,name='card_update'),
 
 ]
 if settings.DEBUG:

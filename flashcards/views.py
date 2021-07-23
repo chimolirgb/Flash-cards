@@ -50,16 +50,41 @@ def category(request):
 def cards_list(request,id):
     category =  Category.objects.get(id=id)
     cards = Card.objects.filter(category=category)
-    
-    
-    for card in cards:
-        print(card.title)
-        
+ 
     ctx={
         "category":category,
         "cards":cards
     }
     return render(request,'category_cards.html',ctx)
+
+def card_update(request,id):
+    card=Card.objects.get(id=id)
+    category = Category.objects.filter(name=card.category)
+    print(card)
+    
+    
+    form = CardForm(instance=card)
+    if request.method == 'POST':
+        form = CardForm(request.POST,request.FILES,instance=card)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+        return redirect('cards_list',id=card.category_id)
+  
+
+    return render(request,'update_card.html',{'form':form})
+    
+def card_delete(request,id):
+    card = Card.objects.get(id=id)
+    category = Category.objects.filter(name=card.category)
+  
+    card.delete()
+    
+    return redirect('cards_list',id=card.category_id)
+  
+   
+  
+    
     
 
 
